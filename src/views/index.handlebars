@@ -1,1 +1,15 @@
-{{}}
+<h1>Consulta de Filmes</h1>
+<form id="movieForm">
+    <input type="text" id="movieTitle" placeholder="Digite o título do filme" required>
+    <button type="submit">Pesquisar</button>
+</form>
+<div id="movieData"></div>
+<script>
+    document.getElementById('movieForm').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        const title = document.getElementById('movieTitle').value
+        const response = await fetch(`/api/movies/${title}`)
+        const data = await response.json()
+        document.getElementById('movieData').innerHTML = JSON.stringify(data, null, 2)
+    })
+</script>

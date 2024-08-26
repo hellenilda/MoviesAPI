@@ -1,10 +1,8 @@
 const axios = require('axios')
 
-const chaveAPI = 'd6eef64b';
-
 const getMovieByTitle = async (req, res) => {
     const { title } = req.params
-    const apiKey = 'SUA_API_KEY' // Substitua pela sua chave da OMDb API
+    const apiKey = 'd6eef64b'
 
     try {
         const response = await axios.get(`http://www.omdbapi.com/?t=${title}&apikey=${apiKey}`)
