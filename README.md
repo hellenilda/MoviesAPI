@@ -43,8 +43,8 @@ src/
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/hellenilda/MoviesAPI.git
-   cd MoviesAPI
+   git clone https://github.com/seu-usuario/movies-api.git
+   cd movies-api
    ```
 
 2. Instale as dependências:
@@ -53,38 +53,59 @@ src/
    npm install
    ```
 
-3. Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+3. Crie um arquivo `.env` na raiz do projeto com a sua chave da API OMDb:
 
-   ```env
-   OMDB_API_KEY=SUA_CHAVE_DE_API
+   ```plaintext
+   OMDB_API_KEY=SUA_CHAVE_AQUI
    ```
 
-4. Inicie o servidor:
+---
+
+## Execução do Projeto
+
+### Localmente
+
+Para rodar a aplicação localmente, execute:
+
+```bash
+npm start
+```
+
+O servidor estará disponível em `http://localhost:3000`.
+
+### Usando Docker
+
+A aplicação também pode ser executada usando Docker, para garantir que o ambiente esteja configurado corretamente em diferentes sistemas.
+
+1. **Construir a imagem Docker:**
+
+   No diretório raiz do projeto, execute:
 
    ```bash
-   npm start
+   docker build -t nome-da-sua-imagem .
    ```
 
-   Ou, se estiver usando `nodemon`:
+2. **Rodar o container:**
+
+   Depois de construir a imagem, você pode rodar o container:
 
    ```bash
-   npx nodemon src/app.js
+   docker run -d -p 3000:3000 --env-file .env nome-da-sua-imagem
    ```
 
-5. Acesse a aplicação no navegador em [http://localhost:3000](http://localhost:3000), ou outra porta que esteja definida na variável PORT (app.js).
+   Isso fará com que a aplicação esteja disponível em `http://localhost:3000`.
+
+3. **Parar o container:**
+
+   Para parar o container em execução, você pode listar os containers e parar o desejado:
+
+   ```bash
+   docker ps
+   docker stop [ID_DO_CONTAINER]
+   ```
 
 ## Uso
 
 1. No campo de pesquisa, digite o título do filme e clique em "Pesquisar".
 2. A aplicação exibirá uma lista de filmes correspondentes ao título pesquisado.
 3. Clique em "Ver detalhes" para visualizar informações detalhadas sobre o filme.
-
-<!-- ## Contribuição
-
-Se desejar contribuir para o projeto, siga estes passos:
-
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature ou correção (`git checkout -b minha-feature`).
-3. Faça as alterações necessárias e commit (`git commit -am 'Adiciona nova feature'`).
-4. Envie suas alterações para o repositório (`git push origin minha-feature`).
-5. Abra um pull request no GitHub. -->
