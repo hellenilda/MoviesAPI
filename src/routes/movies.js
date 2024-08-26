@@ -6,8 +6,6 @@ router.get('/', (req, res) => {
     res.render('index')
 })
 
-// router.get('/api/movies')
-
-router.get('/:title', moviesController.getMovieByTitle)
+router.get('/api/movies/:title', moviesController.getMovieByTitle);
 
 module.exports = router
