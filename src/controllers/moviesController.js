@@ -2,7 +2,7 @@ const axios = require('axios')
 
 const getMovieByTitle = async (req, res) => {
     const { title } = req.params
-    const apiKey = 'CHAVE_ATUALIZADA' // adicionar a nova chave criada
+    const apiKey = process.env.OMDB_API_KEY
 
     try {
         const response = await axios.get(`http://www.omdbapi.com/?t=${title}&apikey=${apiKey}`)
