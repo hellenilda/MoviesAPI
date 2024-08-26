@@ -20,7 +20,7 @@
                     <li>
                         <h3>${movie.Title} (${movie.Year})</h3>
                         <img src="${movie.Poster}" alt="${movie.Title}" style="width:150px;">
-                        <p><a href="#" onclick="fetchMovieDetails('${movie.imdbID}')">Ver detalhes</a></p>
+                        <p><a href="#" onclick="fetchMovieDetails('${movie.imdbID}'); return false;">Ver detalhes</a></p>
                     </li>
                 `
             })
@@ -32,7 +32,7 @@
     })
 
     async function fetchMovieDetails(imdbID) {
-        const response = await fetch(`/api/movies/${imdbID}`)
+        const response = await fetch(`/api/movies/details/${imdbID}`)
         const data = await response.json()
         if (data.Response === "True") {
             document.getElementById('movieData').innerHTML = `

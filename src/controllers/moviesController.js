@@ -8,7 +8,7 @@ const getMoviesByTitle = async (req, res) => {
         const response = await axios.get(`http://www.omdbapi.com/?s=${title}&apikey=${apiKey}`)
         res.json(response.data)
     } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch movie data' })
+        res.status(500).json({ error: 'Falha ao buscar o filme' })
     }
 }
 
@@ -20,7 +20,7 @@ const getMovieDetails = async (req, res) => {
         const response = await axios.get(`http://www.omdbapi.com/?i=${imdbID}&apikey=${apiKey}`);
         res.json(response.data);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch movie details' });
+        res.status(500).json({ error: 'Falha ao ver detalhes do filme' });
     }
 };
 
