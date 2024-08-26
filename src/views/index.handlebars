@@ -12,6 +12,29 @@
         const data = await response.json()
 
         if (data.Response === "True") {
+            const movies = data.Search
+            let movieList = '<h2>Resultados:</h2>'
+            movieList += '<ul>'
+            movies.forEach(movie => {
+                movieList += `
+                    <li>
+                        <h3>${movie.Title} (${movie.Year})</h3>
+                        <img src="${movie.Poster}" alt="${movie.Title}" style="width:150px;">
+                        <p><a href="#" onclick="fetchMovieDetails('${movie.imdbID}')">Ver detalhes</a></p>
+                    </li>
+                `
+            })
+            movieList += '</ul>'
+            document.getElementById('movieData').innerHTML = movieList
+        } else {
+            document.getElementById('movieData').innerHTML = `<p>Filmes não encontrados.</p>`
+        }
+    })
+
+    async function fetchMovieDetails(imdbID) {
+        const response = await fetch(`/api/movies/${imdbID}`)
+        const data = await response.json()
+        if (data.Response === "True") {
             document.getElementById('movieData').innerHTML = `
                 <h2>${data.Title} (${data.Year})</h2>
                 <img src="${data.Poster}" alt="${data.Title}" style="width:300px;">
@@ -22,8 +45,6 @@
                 <p><strong>IMDB Rating:</strong> ${data.imdbRating} (${data.imdbVotes} votes)</p>
                 <p><strong>Box Office:</strong> ${data.BoxOffice}</p>
             `
-        } else {
-            document.getElementById('movieData').innerHTML = `<p>Filme não encontrado.</p>`
         }
-    })
+    }
 </script>
