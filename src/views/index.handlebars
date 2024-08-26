@@ -10,6 +10,20 @@
         const title = document.getElementById('movieTitle').value
         const response = await fetch(`/api/movies/${title}`)
         const data = await response.json()
-        document.getElementById('movieData').innerHTML = JSON.stringify(data, null, 2)
+
+        if (data.Response === "True") {
+            document.getElementById('movieData').innerHTML = `
+                <h2>${data.Title} (${data.Year})</h2>
+                <img src="${data.Poster}" alt="${data.Title}" style="width:300px;">
+                <p><strong>Genre:</strong> ${data.Genre}</p>
+                <p><strong>Director:</strong> ${data.Director}</p>
+                <p><strong>Actors:</strong> ${data.Actors}</p>
+                <p><strong>Plot:</strong> ${data.Plot}</p>
+                <p><strong>IMDB Rating:</strong> ${data.imdbRating} (${data.imdbVotes} votes)</p>
+                <p><strong>Box Office:</strong> ${data.BoxOffice}</p>
+            `
+        } else {
+            document.getElementById('movieData').innerHTML = `<p>Filme não encontrado.</p>`
+        }
     })
 </script>
